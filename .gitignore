@@ -4,3 +4,8 @@ Temp
 *.sln
 *.pidb
 *.userprefs
+.DS_Store
+
+/build
+/dist
+

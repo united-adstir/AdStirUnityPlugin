@@ -1,0 +1,9 @@
+<manifest>
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<application>
+		<activity>
+			<meta-data android:name="unityplayer.ForwardNativeEventsToDalvik" android:value="true" />
+		</activity>
+	</application>
+</manifest>
