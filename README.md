@@ -6,6 +6,8 @@ AdStir
 AdStir Developer's Guide
  http://wiki.ad-stir.com/
 
+AdStirUnityPlugin is derived from https://github.com/gree/unity-webview
+
 License
 ----------------
 	Copyright (C) 2011 Keijiro Takahashi
