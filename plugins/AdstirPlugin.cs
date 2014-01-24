@@ -36,7 +36,7 @@ public class AdstirPlugin : MonoBehaviour
 	
 #if UNITY_IPHONE
 	[DllImport("__Internal")]
-	private static extern IntPtr _AdstirPlugin_show(string media,string spot);
+	private static extern IntPtr _AdstirPlugin_show(string media,string spot, int x, int y, int w, int h);
 	[DllImport("__Internal")]
 	private static extern void _AdstirPlugin_hide(IntPtr instance);
 #endif
