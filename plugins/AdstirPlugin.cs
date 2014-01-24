@@ -28,6 +28,20 @@ using System.Runtime.InteropServices;
 
 public class AdstirPlugin : MonoBehaviour
 {
+
+	public void OnEnable()
+	{
+		//this.ShowAd("MEDIA-ID",SPOT-NO,0,0,320,50);
+	}
+
+	public void OnDisable()
+	{
+		//this.HideAd();
+	}
+
+
+
+
 #if UNITY_IPHONE
 	IntPtr view = IntPtr.Zero;
 #elif UNITY_ANDROID
@@ -40,18 +54,6 @@ public class AdstirPlugin : MonoBehaviour
 	[DllImport("__Internal")]
 	private static extern void _AdstirPlugin_hide(IntPtr instance);
 #endif
-
-
-	public void OnEnable()
-	{
-		//this.ShowAd("MEDIA-ID",SPOT-NO,0,0,320,50);
-	}
-
-	public void OnDisable()
-	{
-		//this.HideAd();
-	}
-
 
 	public void ShowAd(string media,int spot,int x,int y,int w,int h)
 	{
