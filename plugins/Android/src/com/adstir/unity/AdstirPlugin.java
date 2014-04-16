@@ -59,8 +59,8 @@ public class AdstirPlugin
 				FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(wdp, hdp, Gravity.TOP|Gravity.LEFT);
 				lp.setMargins(xdp,ydp,0,0);
 				view.setLayoutParams(lp);
-				com.ad_stir.webview.AdstirWebView adview = new com.ad_stir.webview.AdstirWebView(a,media,spot);
-				adview.setLayoutParams(new FrameLayout.LayoutParams(wdp, hdp));
+				com.ad_stir.webview.AdstirMraidView view = new com.ad_stir.webview.AdstirMraidView(a,media,spot,new com.ad_stir.webview.AdstirMraidView.AdSize(w,h),com.ad_stir.webview.AdstirMraidView.DEFAULT_INTERVAL);
+				adview.setLayoutParams(new FrameLayout.LayoutParams(android.widget.FrameLayout.LayoutParams.WRAP_CONTENT,android.widget.FrameLayout.LayoutParams.WRAP_CONTENT));
 				view.addView(adview);
 				adLayout.addView(view);
 			}
