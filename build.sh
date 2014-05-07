@@ -34,7 +34,7 @@ cp -a "$BASEDIR/AdStirSDK/adstirwebview.jar" "$BASEDIR/build/Assets/Plugins/Andr
 mkdir -p "$BASEDIR/build/Assets/Plugins/iOS"
 cp -a "$BASEDIR/plugins/iOS/AdstirPlugin.mm" "$BASEDIR/build/Assets/Plugins/iOS/AdstirPlugin.mm"
 cp -a "$BASEDIR/AdStirSDK/libAdstirWebView.a" "$BASEDIR/build/Assets/Plugins/iOS/libAdstirWebView.a"
-cp -a "$BASEDIR/AdStirSDK/AdstirWebView.h" "$BASEDIR/build/Assets/Plugins/iOS/AdstirWebView.h"
+cp -a "$BASEDIR/AdStirSDK/AdstirMraidView.h" "$BASEDIR/build/Assets/Plugins/iOS/AdstirMraidView.h"
 
 # 共通
 
