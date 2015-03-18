@@ -38,4 +38,4 @@ Mac Only
 2. Copy AdstirAds.framework in /AdStirSDK directory.
 3. Run ./build.sh command.
 
-Please copy AAA to Frameworks of the generated Xcode Project.
+Please copy AdstirAds.framework to Frameworks of the generated Xcode Project.
