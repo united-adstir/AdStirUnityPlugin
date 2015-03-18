@@ -2,7 +2,7 @@
 
 UNITY="/Applications/Unity/Unity.app/Contents"
 UNITYBIN="$UNITY/MacOS/Unity"
-UNITYLIBS="$UNITY/PlaybackEngines/AndroidPlayer/bin/classes.jar"
+UNITYLIBS="$UNITY/PlaybackEngines/AndroidPlayer/release/bin/classes.jar"
 cd `dirname $0`
 BASEDIR=`pwd`
 
@@ -33,8 +33,7 @@ cp -a "$BASEDIR/AdStirSDK/adstirwebview.jar" "$BASEDIR/build/Assets/Plugins/Andr
 
 mkdir -p "$BASEDIR/build/Assets/Plugins/iOS"
 cp -a "$BASEDIR/plugins/iOS/AdstirPlugin.mm" "$BASEDIR/build/Assets/Plugins/iOS/AdstirPlugin.mm"
-cp -a "$BASEDIR/AdStirSDK/libAdstirWebView.a" "$BASEDIR/build/Assets/Plugins/iOS/libAdstirWebView.a"
-cp -a "$BASEDIR/AdStirSDK/AdstirMraidView.h" "$BASEDIR/build/Assets/Plugins/iOS/AdstirMraidView.h"
+cp -a "$BASEDIR/AdStirSDK/AdstirAds.framework" "$BASEDIR/build/Assets/Plugins/iOS/AdstirAds.framework"
 
 # 共通
 

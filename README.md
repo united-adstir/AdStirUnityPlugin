@@ -35,7 +35,7 @@ Usage
 Mac Only
 
 1. Copy adstirwebview.jar in /AdStirSDK directory.
-2. Copy libAdstirWebView.a AdstirMraidView.h in /AdStirSDK directory.
+2. Copy AdstirAds.framework in /AdStirSDK directory.
 3. Run ./build.sh command.
 
 

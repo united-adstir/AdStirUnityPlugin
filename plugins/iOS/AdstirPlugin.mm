@@ -21,7 +21,7 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "AdstirMraidView.h"
+#import <AdstirAds/AdstirAds.h>
 
 extern UIViewController* UnityGetGLViewController();
 

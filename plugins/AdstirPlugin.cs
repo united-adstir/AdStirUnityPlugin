@@ -31,7 +31,7 @@ public class AdstirPlugin : MonoBehaviour
 
 	public void OnEnable()
 	{
-		//this.ShowAd("MEDIA-ID",SPOT-NO,0,0,320,50);
+		this.ShowAd("MEDIA-ID",SPOT-ID,0,0,320,50);
 	}
 
 	public void OnDisable()
