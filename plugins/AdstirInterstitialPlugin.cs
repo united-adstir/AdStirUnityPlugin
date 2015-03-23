@@ -37,8 +37,8 @@ public class AdstirInterstitialPlugin : MonoBehaviour
 	
 	public void OnEnable()
 	{
-		name = "AdstirInterstitialPlugin";
-		Dictionary<string, string> attrs = new Dictionary<string, string>();
+		//		name = "AdstirInterstitialPlugin";
+		//		Dictionary<string, string> attrs = new Dictionary<string, string>();
 		//		attrs.Add("dialogText", "ダイアログテキスト");
 		// 		attrs.Add("positiveButtonText", null);
 		//		attrs.Add("negativeButtonText", "NG");
@@ -51,12 +51,12 @@ public class AdstirInterstitialPlugin : MonoBehaviour
 		//		attrs.Add("negativeButtonTextColor", "#FFFFFF");
 		//		attrs.Add("negativeButtonBackgroundColor", "#8000");
 		//		attrs.Add("negativeButtonBorderColor", "#80FF0000");
-		this.LoadAd(name, "MEDIA-ID", SPOT-ID, attrs);
+		//		this.LoadAd(name, "MEDIA-ID", SPOT-ID, attrs);
 	}
 	
 	public void OnDisable()
 	{
-		this.HideAd();
+		//		this.HideAd();
 	}
 	
 	public void AdStir_OnReceiveSetting()
