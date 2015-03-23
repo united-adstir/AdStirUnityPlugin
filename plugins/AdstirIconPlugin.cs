@@ -26,17 +26,18 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-public class AdstirPlugin : MonoBehaviour
+public class AdstirIconPlugin : MonoBehaviour
 {
 
 	public void OnEnable()
 	{
-		// this.ShowAd("MEDIA-ID",SPOT-ID,0,0,320,50);
+//		this.ShowAd("MEDIA-ID",SPOT-ID,0,0,320,75,アイコン数[整数],センタリング指定,広告リフレッシュ秒[整数]);
+//		this.ShowAd("MEDIA-ID",SPOT-ID,0,0,320,75,4,true,60);
 	}
 
 	public void OnDisable()
 	{
-		// this.HideAd();
+//		this.HideAd();
 	}
 
 
@@ -45,25 +46,25 @@ public class AdstirPlugin : MonoBehaviour
 #if UNITY_IPHONE
 	IntPtr view = IntPtr.Zero;
 #elif UNITY_ANDROID
-	AndroidJavaObject view;
+//	AndroidJavaObject view;
 #endif
 	
 #if UNITY_IPHONE
 	[DllImport("__Internal")]
-	private static extern IntPtr _AdstirPlugin_show(string media, int spot, int x, int y, int w, int h);
+	private static extern IntPtr _AdstirIconPlugin_show(string media, int spot, int x, int y, int w, int h, int slot, bool isCenter, int interval);
 	[DllImport("__Internal")]
-	private static extern void _AdstirPlugin_hide(IntPtr instance);
+	private static extern void _AdstirIconPlugin_hide(IntPtr instance);
 #endif
 
-	public void ShowAd(string media, int spot, int x, int y, int w, int h)
+	public void ShowAd(string media, int spot, int x, int y, int w, int h, int slot, bool isCenter, int interval)
 	{
 #if UNITY_IPHONE
 		if (view != IntPtr.Zero) return;
-		view = _AdstirPlugin_show(media,spot,x,y,w,h);
+		view = _AdstirIconPlugin_show(media,spot,x,y,w,h,slot,isCenter,interval);
 #elif UNITY_ANDROID
-		if (view != null) return;
-		view = new AndroidJavaObject("com.adstir.unity.AdstirPlugin");
-		view.Call("show", media,spot,x,y,w,h);
+//		if (view != null) return;
+//		view = new AndroidJavaObject("com.adstir.unity.AdstirPlugin");
+//		view.Call("show", media,spot,x,y,w,h);
 #endif
 	}
 
@@ -71,12 +72,12 @@ public class AdstirPlugin : MonoBehaviour
 	{
 #if UNITY_IPHONE
 		if (view == IntPtr.Zero) return;
-		_AdstirPlugin_hide(view);
+		_AdstirIconPlugin_hide(view);
 		view = IntPtr.Zero;
 #elif UNITY_ANDROID
-		if (view == null) return;
-		view.Call("hide");
-		view = null;
+//		if (view == null) return;
+//		view.Call("hide");
+//		view = null;
 #endif
 	}
 

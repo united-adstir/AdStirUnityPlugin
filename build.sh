@@ -38,6 +38,9 @@ cp -a "$BASEDIR/AdStirSDK/AdstirAds.framework" "$BASEDIR/build/Assets/Plugins/iO
 # 共通
 
 cp -a "$BASEDIR/plugins/AdstirPlugin.cs" "$BASEDIR/build/Assets/Plugins/AdstirPlugin.cs"
+cp -a "$BASEDIR/plugins/AdstirIconPlugin.cs" "$BASEDIR/build/Assets/Plugins/AdstirIconPlugin.cs"
+cp -a "$BASEDIR/plugins/AdstirInterstitialPlugin.cs" "$BASEDIR/build/Assets/Plugins/AdstirInterstitialPlugin.cs"
+cp -a "$BASEDIR/plugins/LTSV.cs" "$BASEDIR/build/Assets/Plugins/LTSV.cs"
 
 cd "$BASEDIR/build"
 $UNITYBIN -projectPath "$BASEDIR/build" -quit -batchmode -exportPackage Assets Adstir.unityPackage -cleanedLogFile build.log
