@@ -139,27 +139,22 @@
 
 
 - (void)adstirInterstitialDidReceiveSetting:(AdstirInterstitial *)inter {
-    NSLog(@"%@", @"AdStir_OnReceiveSetting");
     const char* gameObject = [[AdstirUnityInterstitial sharedInstance].gameObject UTF8String];
     UnitySendMessage(gameObject, "AdStir_OnReceiveSetting", gameObject);
 }
 - (void)adstirInterstitialDidFailedToReceiveSetting:(AdstirInterstitial *)inter {
-    NSLog(@"%@", @"AdStir_OnReceiveFailedSetting");
     const char* gameObject = [[AdstirUnityInterstitial sharedInstance].gameObject UTF8String];
     UnitySendMessage(gameObject, "AdStir_OnReceiveFailedSetting", gameObject);
 }
 - (void)adstirInterstitialDialogPositiveButtonClick:(AdstirInterstitial *)inter {
-    NSLog(@"%@", @"AdStir_OnDialogPositiveButtonClick");
     const char* gameObject = [[AdstirUnityInterstitial sharedInstance].gameObject UTF8String];
     UnitySendMessage(gameObject, "AdStir_OnDialogPositiveButtonClick", gameObject);
 }
 - (void)adstirInterstitialDialogNegativeButtonClick:(AdstirInterstitial *)inter {
-    NSLog(@"%@", @"AdStir_OnDialogNegativeButtonClick");
     const char* gameObject = [[AdstirUnityInterstitial sharedInstance].gameObject UTF8String];
     UnitySendMessage(gameObject, "AdStir_OnDialogNegativeButtonClick", gameObject);
 }
 - (void)adstirInterstitialDialogCancel:(AdstirInterstitial *)inter {
-    NSLog(@"%@", @"AdStir_OnDialogCancel");
     const char* gameObject = [[AdstirUnityInterstitial sharedInstance].gameObject UTF8String];
     UnitySendMessage(gameObject, "AdStir_OnDialogCancel", gameObject);
 }
@@ -201,7 +196,7 @@ extern "C" {
     
     void* _AdstirIconPlugin_show(const char *media, int spot, int x, int y, int w, int h, int slot, bool isCenter, int interval)
     {
-        AdstirIconView *instance = [[[AdstirIconView alloc] initWithFrame:CGRectMake(x, y, w, h)] autorelease];
+        AdstirIconView *instance = [[AdstirIconView alloc] initWithFrame:CGRectMake(x, y, w, h)];
         instance.media = [NSString stringWithUTF8String:(const char*) media];
         instance.spot = spot;
         instance.slot = slot;
@@ -245,7 +240,6 @@ extern "C" {
     
     void _AdstirInterstitialPlugin_show(int showType)
     {
-        NSLog(@"showtype:%d", showType);
         AdstirInterstitial *instance = [AdstirUnityInterstitial sharedInstance].instance;
         switch (showType) {
             default:
@@ -263,10 +257,9 @@ extern "C" {
     
     void _AdstirInterstitialPlugin_hide()
     {
-        NSLog(@"%@", @"_AdstirInterstitialPlugin_hide");
         AdstirInterstitial *instance = [AdstirUnityInterstitial sharedInstance].instance;
         instance.delegate = nil;
         instance.dialogDelegate = nil;
-        [instance release];
+        [AdstirUnityInterstitial sharedInstance].instance = nil;
     }
 }
