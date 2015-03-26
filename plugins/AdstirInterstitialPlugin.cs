@@ -37,7 +37,7 @@ public class AdstirInterstitialPlugin : MonoBehaviour
 	
 	public void OnEnable()
 	{
-		//		name = "AdstirInterstitialPlugin";
+		// 		name = "AdstirInterstitialPlugin";
 		//		Dictionary<string, string> attrs = new Dictionary<string, string>();
 		//		attrs.Add("dialogText", "ダイアログテキスト");
 		// 		attrs.Add("positiveButtonText", null);
@@ -87,7 +87,7 @@ public class AdstirInterstitialPlugin : MonoBehaviour
 	#if UNITY_IPHONE
 	IntPtr view = IntPtr.Zero;
 	#elif UNITY_ANDROID
-	//	AndroidJavaObject view;
+	AndroidJavaObject view;
 	#endif
 	
 	#if UNITY_IPHONE
@@ -106,9 +106,10 @@ public class AdstirInterstitialPlugin : MonoBehaviour
 		string ltsv = AdStir.LTSV.fromDictionary(attrs);
 		view = _AdstirInterstitialPlugin_load(goname, media, spot, ltsv);
 		#elif UNITY_ANDROID
-		//		if (view != null) return;
-		//		view = new AndroidJavaObject("com.adstir.unity.AdstirPlugin");
-		//		view.Call("show", media,spot,x,y,w,h);
+		if (view != null) return;
+		string ltsv = AdStir.LTSV.fromDictionary(attrs);
+		view = new AndroidJavaObject("com.adstir.unity.AdstirPlugin");
+		view.Call("_AdstirInterstitialPlugin_load", goname, media, spot, ltsv);
 		#endif
 	}
 	
@@ -117,9 +118,8 @@ public class AdstirInterstitialPlugin : MonoBehaviour
 		#if UNITY_IPHONE
 		_AdstirInterstitialPlugin_show((int) showType);
 		#elif UNITY_ANDROID
-		//		if (view != null) return;
-		//		view = new AndroidJavaObject("com.adstir.unity.AdstirPlugin");
-		//		view.Call("show", media,spot,x,y,w,h);
+		view = new AndroidJavaObject("com.adstir.unity.AdstirPlugin");
+		view.Call("_AdstirInterstitialPlugin_show", (int) showType);
 		#endif
 	}
 	
@@ -130,9 +130,9 @@ public class AdstirInterstitialPlugin : MonoBehaviour
 		_AdstirInterstitialPlugin_hide();
 		view = IntPtr.Zero;
 		#elif UNITY_ANDROID
-		//		if (view == null) return;
-		//		view.Call("hide");
-		//		view = null;
+		if (view == null) return;
+		view.Call("_AdstirInterstitialPlugin_hide");
+		view = null;
 		#endif
 	}
 	

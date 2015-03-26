@@ -63,7 +63,7 @@ public class AdstirPlugin : MonoBehaviour
 #elif UNITY_ANDROID
 		if (view != null) return;
 		view = new AndroidJavaObject("com.adstir.unity.AdstirPlugin");
-		view.Call("show", media,spot,x,y,w,h);
+		view.Call("_AdstirPlugin_show", media,spot,x,y,w,h);
 #endif
 	}
 
@@ -75,7 +75,7 @@ public class AdstirPlugin : MonoBehaviour
 		view = IntPtr.Zero;
 #elif UNITY_ANDROID
 		if (view == null) return;
-		view.Call("hide");
+		view.Call("_AdstirPlugin_hide");
 		view = null;
 #endif
 	}

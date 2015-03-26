@@ -5,5 +5,6 @@
 		<activity>
 			<meta-data android:name="unityplayer.ForwardNativeEventsToDalvik" android:value="true" />
 		</activity>
+        <activity android:name="com.ad_stir.interstitial.AdstirInterstitialActivity" android:theme="@android:style/Theme.Translucent" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
 	</application>
 </manifest>

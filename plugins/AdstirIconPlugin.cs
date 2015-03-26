@@ -46,7 +46,7 @@ public class AdstirIconPlugin : MonoBehaviour
 #if UNITY_IPHONE
 	IntPtr view = IntPtr.Zero;
 #elif UNITY_ANDROID
-//	AndroidJavaObject view;
+	AndroidJavaObject view;
 #endif
 	
 #if UNITY_IPHONE
@@ -62,9 +62,9 @@ public class AdstirIconPlugin : MonoBehaviour
 		if (view != IntPtr.Zero) return;
 		view = _AdstirIconPlugin_show(media,spot,x,y,w,h,slot,isCenter,interval);
 #elif UNITY_ANDROID
-//		if (view != null) return;
-//		view = new AndroidJavaObject("com.adstir.unity.AdstirPlugin");
-//		view.Call("show", media,spot,x,y,w,h);
+		if (view != null) return;
+		view = new AndroidJavaObject("com.adstir.unity.AdstirPlugin");
+		view.Call("_AdstirIconPlugin_show", media,spot,x,y,w,h,slot,isCenter,interval);
 #endif
 	}
 
@@ -75,9 +75,9 @@ public class AdstirIconPlugin : MonoBehaviour
 		_AdstirIconPlugin_hide(view);
 		view = IntPtr.Zero;
 #elif UNITY_ANDROID
-//		if (view == null) return;
-//		view.Call("hide");
-//		view = null;
+		if (view == null) return;
+		view.Call("_AdstirIconPlugin_hide");
+		view = null;
 #endif
 	}
 
