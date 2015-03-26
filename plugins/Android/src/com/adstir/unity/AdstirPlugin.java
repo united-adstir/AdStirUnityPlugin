@@ -33,22 +33,13 @@ import com.ad_stir.interstitial.AdstirInterstitial.AdstirInterstitialListener;
 import com.unity3d.player.UnityPlayer;
 
 import android.app.Activity;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Paint.Join;
 import android.graphics.Rect;
-import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
-import android.graphics.drawable.NinePatchDrawable;
 import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.RectShape;
 import android.graphics.drawable.shapes.RoundRectShape;
-import android.graphics.drawable.shapes.Shape;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
@@ -193,49 +184,51 @@ public class AdstirPlugin {
 			final String media, final int spot, final String attrs) {
 
 		AdstirUnityInterstitial.sharedInstance().gameObject = goname;
-		final Activity a = UnityPlayer.currentActivity;
+		Activity a = UnityPlayer.currentActivity;
 
 		a.runOnUiThread(new Runnable() {
 			public void run() {
-				final AdstirInterstitial instance = new AdstirInterstitial(
-						media, spot);
+				AdstirInterstitial instance = new AdstirInterstitial(media, spot);
 				AdstirUnityInterstitial.sharedInstance().instance = instance;
 
 				// Set AdstirInterstitial Parameters
 				if (attrs.length() > 0) {
 					HashMap<String, String> params = AdStir.parseLTSV(attrs);
 					if (params.size() > 0)
-						AdstirUnityInterstitial.sharedInstance().setParameters(
-								params);
+						AdstirUnityInterstitial.sharedInstance().setParameters(params);
 				}
 
 				instance.setListener(new AdstirInterstitialListener() {
 					@Override
 					public void onReceiveSetting() {
-						// TODO 自動生成されたメソッド・スタブ
-
+						String gameObject = AdstirUnityInterstitial.sharedInstance().gameObject;
+						UnityPlayer.UnitySendMessage(gameObject, "AdStir_OnReceiveSetting", gameObject);
 					}
 
 					@Override
 					public void onFailedToReceiveSetting() {
-						// TODO 自動生成されたメソッド・スタブ
+						String gameObject = AdstirUnityInterstitial.sharedInstance().gameObject;
+						UnityPlayer.UnitySendMessage(gameObject, "AdStir_OnReceiveFailedSetting", gameObject);
 					}
 				});
 
 				instance.setDialoglistener(new AdstirInterstitialDialogListener() {
 					@Override
 					public void onPositiveButtonClick() {
-						// TODO 自動生成されたメソッド・スタブ
+						String gameObject = AdstirUnityInterstitial.sharedInstance().gameObject;
+						UnityPlayer.UnitySendMessage(gameObject, "AdStir_OnDialogPositiveButtonClick", gameObject);
 					}
 
 					@Override
 					public void onNegativeButtonClick() {
-						// TODO 自動生成されたメソッド・スタブ
+						String gameObject = AdstirUnityInterstitial.sharedInstance().gameObject;
+						UnityPlayer.UnitySendMessage(gameObject, "AdStir_OnDialogNegativeButtonClick", gameObject);
 					}
 
 					@Override
 					public void onCancel() {
-						// TODO 自動生成されたメソッド・スタブ
+						String gameObject = AdstirUnityInterstitial.sharedInstance().gameObject;
+						UnityPlayer.UnitySendMessage(gameObject, "AdStir_OnDialogCancel", gameObject);
 					}
 				});
 				instance.load();
@@ -313,11 +306,11 @@ class AdstirUnityInterstitial {
 							Method method = instance.getClass().getMethod(
 									methodName, new Class[] { int.class });
 							method.invoke(instance, new Object[] { AdStir
-									.HextoColor(params.get(key)) });
+									.HextoColor(params.get(key)) });							
 						} catch (NoSuchMethodException e) {
 							methodName = methodName.replaceFirst("Color$", "");
-						
 							if(key.equals("dialogBackgroundColor")) {
+
 								int b = Dip.dipToPx(a, 2);
 								int r = Dip.dipToPx(a, 10);
 								int p = Dip.dipToPx(a, 10);
@@ -354,10 +347,7 @@ class AdstirUnityInterstitial {
 								Paint paint = borderDrawable.getPaint();
 								if(key.equals("positiveButtonBackgroundColor") && params.containsKey("positiveButtonBorderColor")) {
 									paint.setColor(AdStir.HextoColor(params.get("positiveButtonBorderColor")));
-								}else {
-									paint.setColor(Color.TRANSPARENT);
-								}
-								if(key.equals("negativeButtonBackgroundColor") && params.containsKey("negativeButtonBorderColor")) {
+								}else if(key.equals("negativeButtonBackgroundColor") && params.containsKey("negativeButtonBorderColor")) {
 									paint.setColor(AdStir.HextoColor(params.get("negativeButtonBorderColor")));
 								}else {
 									paint.setColor(Color.TRANSPARENT);
