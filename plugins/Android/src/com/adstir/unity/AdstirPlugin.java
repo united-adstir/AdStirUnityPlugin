@@ -121,9 +121,6 @@ public class AdstirPlugin {
 		final Activity a = UnityPlayer.currentActivity;
 		a.runOnUiThread(new Runnable() {
 			public void run() {
-				int vertical = LayoutParams.WRAP_CONTENT;
-				int horizontal = isCenter ? LayoutParams.MATCH_PARENT
-						: LayoutParams.WRAP_CONTENT;
 				if (iconAdLayout == null) {
 					iconAdLayout = new FrameLayout(a);
 					a.addContentView(iconAdLayout,
@@ -143,12 +140,7 @@ public class AdstirPlugin {
 							TypedValue.COMPLEX_UNIT_DIP, h, metrics);
 					iconView = new FrameLayout(a);
 
-					FrameLayout.LayoutParams lp;
-					if (isCenter) {
-						lp = new FrameLayout.LayoutParams(horizontal, vertical);
-					} else {
-						lp = new FrameLayout.LayoutParams(wdp, hdp);
-					}
+					FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(wdp, hdp);
 					lp.setMargins(xdp, ydp, 0, 0);
 					iconView.setLayoutParams(lp);
 
