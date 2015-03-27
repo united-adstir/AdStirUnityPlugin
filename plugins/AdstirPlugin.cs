@@ -80,4 +80,24 @@ public class AdstirPlugin : MonoBehaviour
 #endif
 	}
 
+	public float GetDisplayWidth()
+	{
+#if UNITY_IPHONE
+#elif UNITY_ANDROID
+		AndroidJavaClass adstirclass = new AndroidJavaClass("com.adstir.unity.AdstirPlugin");
+		return adstirclass.CallStatic<float>("_AdstirPlugin_width");
+#endif
+		return 0;
+	}
+	
+	public float GetDisplayHeight()
+	{
+#if UNITY_IPHONE
+#elif UNITY_ANDROID
+		AndroidJavaClass adstirclass = new AndroidJavaClass("com.adstir.unity.AdstirPlugin");
+		return adstirclass.CallStatic<float>("_AdstirPlugin_height");
+#endif
+		return 0;
+	}
+
 }

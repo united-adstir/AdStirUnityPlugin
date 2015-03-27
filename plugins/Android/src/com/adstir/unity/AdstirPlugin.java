@@ -59,6 +59,16 @@ public class AdstirPlugin {
 
 	}
 
+	public static float _AdstirPlugin_width() {
+		final Activity a = UnityPlayer.currentActivity;
+		return a.getWindow().getDecorView().getWidth() / a.getResources().getDisplayMetrics().density;
+	}
+	
+	public static float _AdstirPlugin_height() {
+		final Activity a = UnityPlayer.currentActivity;
+		return a.getWindow().getDecorView().getHeight() / a.getResources().getDisplayMetrics().density;
+	}
+	
 	public void _AdstirPlugin_show(final String media, final int spot,
 			final int x, final int y, final int w, final int h) {
 		final Activity a = UnityPlayer.currentActivity;
@@ -124,7 +134,7 @@ public class AdstirPlugin {
 				if (iconAdLayout == null) {
 					iconAdLayout = new FrameLayout(a);
 					a.addContentView(iconAdLayout,
-							new FrameLayout.LayoutParams(horizontal, vertical,
+							new FrameLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT,
 									Gravity.TOP | Gravity.LEFT));
 				}
 				if (iconView == null) {
