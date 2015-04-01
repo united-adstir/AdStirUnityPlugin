@@ -9,3 +9,7 @@ Temp
 /build
 /dist
 
+npm-debug.log
+.classpath
+.project
+org.eclipse.jdt.core.prefs
