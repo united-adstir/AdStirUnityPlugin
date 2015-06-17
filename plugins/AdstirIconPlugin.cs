@@ -28,79 +28,79 @@ using System.Runtime.InteropServices;
 
 public class AdstirIconPlugin : MonoBehaviour
 {
-
+	
 	public void OnEnable()
 	{
-//		this.ShowAd("MEDIA-ID",SPOT-ID,0,0,320,75,アイコン数[整数],センタリング指定,広告リフレッシュ秒[整数]);
-//		this.ShowAd("MEDIA-ID",SPOT-ID,0,0,320,75,4,true,60);
+		//		this.ShowAd("MEDIA-ID",SPOT-ID,0,0,320,75,アイコン数[整数],センタリング指定,広告リフレッシュ秒[整数]);
+		//		this.ShowAd("MEDIA-ID",SPOT-ID,0,0,320,75,4,true,60);
 	}
-
+	
 	public void OnDisable()
 	{
-//		this.HideAd();
+		//		this.HideAd();
 	}
-
-
-
-
-#if UNITY_IPHONE
-	IntPtr view = IntPtr.Zero;
-#elif UNITY_ANDROID
-	AndroidJavaObject view;
-#endif
 	
-#if UNITY_IPHONE
+	
+	
+	
+	#if UNITY_IPHONE
+	IntPtr view = IntPtr.Zero;
+	#elif UNITY_ANDROID
+	AndroidJavaObject view;
+	#endif
+	
+	#if UNITY_IPHONE
 	[DllImport("__Internal")]
 	private static extern IntPtr _AdstirIconPlugin_show(string media, int spot, int x, int y, int w, int h, int slot, bool isCenter, int interval);
 	[DllImport("__Internal")]
 	private static extern void _AdstirIconPlugin_hide(IntPtr instance);
-#endif
-
+	#endif
+	
 	public void ShowAd(string media, int spot, int x, int y, int w, int h, int slot, bool isCenter, int interval)
 	{
-#if UNITY_IPHONE
-		if (view != IntPtr.Zero) return;
-		view = _AdstirIconPlugin_show(media,spot,x,y,w,h,slot,isCenter,interval);
-#elif UNITY_ANDROID
+		#if UNITY_IPHONE
+		//		if (view != IntPtr.Zero) return;
+		//		view = _AdstirIconPlugin_show(media,spot,x,y,w,h,slot,isCenter,interval);
+		#elif UNITY_ANDROID
 		if (view != null) return;
 		view = new AndroidJavaObject("com.adstir.unity.AdstirPlugin");
 		view.Call("_AdstirIconPlugin_show", media,spot,x,y,w,h,slot,isCenter,interval);
-#endif
+		#endif
 	}
-
+	
 	public void HideAd()
 	{
-#if UNITY_IPHONE
+		#if UNITY_IPHONE
 		if (view == IntPtr.Zero) return;
 		_AdstirIconPlugin_hide(view);
 		view = IntPtr.Zero;
-#elif UNITY_ANDROID
+		#elif UNITY_ANDROID
 		if (view == null) return;
 		view.Call("_AdstirIconPlugin_hide");
 		view = null;
-#endif
+		#endif
 	}
-
-
+	
+	
 	public float GetDisplayWidth()
 	{
-#if UNITY_IPHONE
-#elif UNITY_ANDROID
+		#if UNITY_IPHONE
+		#elif UNITY_ANDROID
 		AndroidJavaClass adstirclass = new AndroidJavaClass("com.adstir.unity.AdstirPlugin");
 		return adstirclass.CallStatic<float>("_AdstirPlugin_width");
-#endif
+		#endif
 		return 0;
 	}
 	
 	public float GetDisplayHeight()
 	{
-#if UNITY_IPHONE
-#elif UNITY_ANDROID
+		#if UNITY_IPHONE
+		#elif UNITY_ANDROID
 		AndroidJavaClass adstirclass = new AndroidJavaClass("com.adstir.unity.AdstirPlugin");
 		return adstirclass.CallStatic<float>("_AdstirPlugin_height");
-#endif
+		#endif
 		return 0;
 	}
-
-
+	
+	
 }

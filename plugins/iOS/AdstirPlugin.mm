@@ -262,4 +262,14 @@ extern "C" {
         instance.dialogDelegate = nil;
         [AdstirUnityInterstitial sharedInstance].instance = nil;
     }
+    
+    float _AdstirPlugin_width()
+    {
+        return UnityGetGLViewController().view.frame.size.width;
+    }
+    
+    float _AdstirPlugin_height()
+    {
+        return UnityGetGLViewController().view.frame.size.height;
+    }
 }
