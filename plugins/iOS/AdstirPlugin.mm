@@ -194,26 +194,6 @@ extern "C" {
         [instance release];
     }
     
-    void* _AdstirIconPlugin_show(const char *media, int spot, int x, int y, int w, int h, int slot, bool isCenter, int interval)
-    {
-        AdstirIconView *instance = [[AdstirIconView alloc] initWithFrame:CGRectMake(x, y, w, h)];
-        instance.media = [NSString stringWithUTF8String:(const char*) media];
-        instance.spot = spot;
-        instance.slot = slot;
-        instance.isCenter = isCenter ? YES : NO;
-        instance.interval = interval;
-        [UnityGetGLViewController().view addSubview:instance];
-        return (void*) instance;
-    }
-    
-    void _AdstirIconPlugin_hide(void* viewinstance)
-    {
-        AdstirIconView *instance = (AdstirIconView *)viewinstance;
-        instance.delegate = nil;
-        [instance removeFromSuperview];
-        [instance release];
-    }
-    
     void* _AdstirInterstitialPlugin_load(const char *gameObject, const char *media, int spot, const char *ltsv)
     {
         AdstirInterstitial *instance = [[[AdstirInterstitial alloc] init] autorelease];
